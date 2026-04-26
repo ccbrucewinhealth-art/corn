@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: corn
+  labels:
+    app: corn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: corn
+  template:
+    metadata:
+      labels:
+        app: corn
+    spec:
+      containers:
+        - name: corn
+          image: corn:0.1.0
+          imagePullPolicy: IfNotPresent
+          args: ["svc", "--bind", "0.0.0.0:8080"]
+          ports:
+            - containerPort: 8080
+            - containerPort: 8090
+          env:
+            - name: CORN_APP_ENV
+              value: "prod"
+            - name: CORN_APP_HOST
+              value: "0.0.0.0"
+            - name: CORN_APP_PORT
+              value: "8080"
+            - name: CORN_PROXY_BIND
+              value: "0.0.0.0:8090"
+            - name: CORN_UI_TEMPLATE_ROOT
+              value: "/app/corn/ui/templates"
+            - name: CORN_UI_ASSETS_ROOT
+              value: "/app/corn/ui/assets"
+            - name: CORN_MD_ROOT
+              value: "/app/corn/data/markdown"
+            - name: CORN_MD_HISTORY_ROOT
+              value: "/app/corn/data/markdown_history"
+            - name: CORN_PLUGIN_ROOT
+              value: "/app/corn/plugins"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5

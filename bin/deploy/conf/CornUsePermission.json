@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "admin123",
+      "permissions": [
+        "*",
+        "tacos.login"
+      ],
+      "groups": [
+        "admins"
+      ]
+    }
+  ]
+}

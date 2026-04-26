@@ -1,0 +1,47 @@
+-- F18 Plugin Engine Schema (MSSQL)
+IF OBJECT_ID(N'dbo.CornPluginRegistry', N'U') IS NULL
+BEGIN
+  CREATE TABLE dbo.CornPluginRegistry (
+    Id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    PluginId NVARCHAR(128) NOT NULL,
+    Lang NVARCHAR(32) NOT NULL,
+    CurrentVersion NVARCHAR(64) NOT NULL,
+    Entry NVARCHAR(512) NOT NULL,
+    Enabled BIT NOT NULL DEFAULT 1,
+    Checksum NVARCHAR(128) NULL,
+    CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    UpdatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT UQ_CornPluginRegistry_PluginId UNIQUE (PluginId)
+  );
+END;
+GO
+
+IF OBJECT_ID(N'dbo.CornPluginVersion', N'U') IS NULL
+BEGIN
+  CREATE TABLE dbo.CornPluginVersion (
+    Id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    PluginId NVARCHAR(128) NOT NULL,
+    Version NVARCHAR(64) NOT NULL,
+    ManifestJson NVARCHAR(MAX) NOT NULL,
+    SourceCode NVARCHAR(MAX) NULL,
+    CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT UQ_CornPluginVersion_PluginId_Version UNIQUE (PluginId, Version)
+  );
+END;
+GO
+
+IF OBJECT_ID(N'dbo.CornPluginExecutionLog', N'U') IS NULL
+BEGIN
+  CREATE TABLE dbo.CornPluginExecutionLog (
+    Id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    PluginId NVARCHAR(128) NOT NULL,
+    Version NVARCHAR(64) NOT NULL,
+    ExecStatus NVARCHAR(32) NOT NULL,
+    DurationMs INT NOT NULL,
+    StdoutText NVARCHAR(MAX) NULL,
+    StderrText NVARCHAR(MAX) NULL,
+    CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+  );
+END;
+GO
+

@@ -1,0 +1,54 @@
+[package]
+name = "corn"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[lib]
+path = "../src/core/lib.rs"
+
+[[bin]]
+name = "corn"
+path = "../src/core/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+axum.workspace = true
+chrono.workspace = true
+clap.workspace = true
+dotenvy.workspace = true
+once_cell.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tower-http.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+walkdir.workspace = true
+mlua = { version = "0.9.9", features = ["lua54", "vendored"] }
+
+[[test]]
+name = "test_f01_f02_bootstrap"
+path = "../test/test_f01_f02_bootstrap.rs"
+
+[[test]]
+name = "test_f04_f05_f06_scheduler_executor"
+path = "../test/test_f04_f05_f06_scheduler_executor.rs"
+
+[[test]]
+name = "test_f07_f08_api_swagger"
+path = "../test/test_f07_f08_api_swagger.rs"
+
+[[test]]
+name = "test_f10_ui_markdown"
+path = "../test/test_f10_ui_markdown.rs"
+
+[[test]]
+name = "test_f16_f17_supervisor_proxy"
+path = "../test/test_f16_f17_supervisor_proxy.rs"
+
+[[test]]
+name = "test_f18_plugin"
+path = "../test/test_f18_plugin.rs"

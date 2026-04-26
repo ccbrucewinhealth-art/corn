@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: corn
+  labels:
+    app: corn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: corn
+  template:
+    metadata:
+      labels:
+        app: corn
+    spec:
+      containers:
+        - name: corn
+          image: corn:0.1.0
+          ports:
+            - containerPort: 8080
+            - containerPort: 8090
+          envFrom:
+            - configMapRef:
+                name: corn-config
+            - secretRef:
+                name: corn-secret
+          volumeMounts:
+            - name: data
+              mountPath: /app/corn/data
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: corn-data-pvc

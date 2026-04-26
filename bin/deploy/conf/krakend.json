@@ -1,0 +1,26 @@
+{
+    "$schema": "https://www.krakend.io/schema/v2.7/krakend.json",
+    "version": 3,
+    "name": "corn-default-proxy",
+    "timeout": "30000ms",
+    "endpoints": [
+        {
+            "endpoint": "/aaa/proxy/{target}",
+            "method": "GET",
+            "input_headers": [
+                "Authorization",
+                "Content-Type"
+            ],
+            "output_encoding": "html",
+            "backend": [
+                {
+                    "url_pattern": "/{target}",
+                    "encoding": "no-op",
+                    "host": [
+                        "https://g.winhealth.info/dashboard"
+                    ]
+                }
+            ]
+        }
+    ]
+}

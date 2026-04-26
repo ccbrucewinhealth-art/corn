@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title>tacos login</title>
+  </head>
+  <body>
+    <h2>tacos login 333 (custom view)</h2>
+    <p>UI Root: {{ui_root_uri}}</p>
+    <p>UI Path: {{ui_path}}</p>
+    <form method="post" action="javascript:void(0);" onsubmit="login()">
+      <input id="username" placeholder="username" value="admin" />
+      <input
+        id="password"
+        type="password"
+        placeholder="password"
+        value="admin123"
+      />
+      <button type="submit">login</button>
+    </form>
+    <pre id="result"></pre>
+    <script>
+      async function login() {
+        const payload = {
+          username: document.getElementById("username").value,
+          password: document.getElementById("password").value,
+        };
+        const r = await fetch("{{api_login_path}}", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        document.getElementById("result").textContent = JSON.stringify(
+          await r.json(),
+          null,
+          2,
+        );
+      }
+    </script>
+  </body>
+</html>

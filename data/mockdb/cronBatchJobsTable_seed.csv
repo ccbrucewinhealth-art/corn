@@ -1,0 +1,2 @@
+Id,Name,JobId,Host,StartDateTime,IsStarted,IsEnable,Once,WorkBeginAt,WorkEndAt,Concurrent,DelayStart,Content,Result,Secret,Type
+3f52335e-362c-41f0-8eff-3f6167c58513,default-batch-job,,default,,0,1,0,,,0,0,echo batch-from-db,,,shell

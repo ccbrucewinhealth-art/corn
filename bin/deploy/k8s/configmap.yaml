@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: corn-config
+  labels:
+    app: corn
+data:
+  CORN_APP_ENV: "prod"
+  CORN_APP_HOST: "0.0.0.0"
+  CORN_APP_PORT: "8080"
+  CORN_PROXY_BIND: "0.0.0.0:8090"
+  CORN_UI_TEMPLATE_ROOT: "/app/corn/ui/templates"
+  CORN_UI_ASSETS_ROOT: "/app/corn/ui/assets"
+  CORN_MD_ROOT: "/app/corn/data/markdown"
+  CORN_MD_HISTORY_ROOT: "/app/corn/data/markdown_history"

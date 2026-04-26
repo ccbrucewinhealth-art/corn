@@ -1,0 +1,3 @@
+# corn default crontab
+# sec min hour day month weekday command
+*/10 * * * * * echo hello-crontab

@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  corn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: corn:0.1.0
+    container_name: corn
+    environment:
+      CORN_APP_ENV: dev
+      CORN_APP_HOST: 0.0.0.0
+      CORN_APP_PORT: 8080
+      CORN_PROXY_BIND: 0.0.0.0:8090
+      CORN_UI_TEMPLATE_ROOT: /app/corn/ui/templates
+      CORN_UI_ASSETS_ROOT: /app/corn/ui/assets
+      CORN_MD_ROOT: /app/corn/data/markdown
+      CORN_MD_HISTORY_ROOT: /app/corn/data/markdown_history
+      CORN_PLUGIN_ROOT: /app/corn/plugins
+    ports:
+      - "8080:8080"
+      - "8090:8090"
+    volumes:
+      - ./corn/data:/app/corn/data
+      - ./corn/plugins:/app/corn/plugins
+    restart: unless-stopped
+
+# checklist method markers
+# buildManifest()
+# validateManifest()
+# applyPolicy()

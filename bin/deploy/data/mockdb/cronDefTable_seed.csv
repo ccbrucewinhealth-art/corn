@@ -1,0 +1,2 @@
+Id,Name,Host,CronExpr,Type,Content,Secret,IsEnable,Concurrent,DelayStart
+0bdf0b76-5402-4bad-a8da-231291a7791d,default-db-job,default,*/10 * * * *,shell,echo from-db,,1,0,0

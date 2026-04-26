@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/assets/adminlte.min.css" />
+  </head>
+  <body>
+    <main class="container p-3">
+      <h1>Markdown 管理</h1>
+      <p>API: <code>/corn/api/0.85/md/*</code></p>
+      <ul>
+        <li>Tree: <code>GET /corn/api/0.85/md/tree</code></li>
+        <li>Read: <code>GET /corn/api/0.85/md/read/*path</code></li>
+        <li>Write: <code>PUT /corn/api/0.85/md/write/*path</code></li>
+        <li>Create: <code>POST /corn/api/0.85/md/create/*path</code></li>
+        <li>Delete: <code>DELETE /corn/api/0.85/md/delete/*path</code></li>
+        <li>History: <code>GET /corn/api/0.85/md/history/*path</code></li>
+      </ul>
+    </main>
+  </body>
+</html>
