@@ -1,6 +1,6 @@
 # corn
 
-`corn` 是以 Rust 開發的排程系統，目標取代 Ubuntu crontab/supervisor/krankend，並可在 Docker / K8s Pod 中執行。
+`corn` 是以 Rust 開發的排程系統，目標取代 Ubuntu crontab/supervisor/proxy，並可在 Docker / K8s Pod 中執行。
 
 ## 概述
 
