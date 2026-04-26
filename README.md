@@ -1,6 +1,6 @@
 # corn
 
-`corn` is a Rust-based scheduling system that replaces Ubuntu crontab and can run in Docker / K8s Pods.
+`corn` is a Rust-based scheduling system that replaces Ubuntu crontab/supervisor/proxy and can run in Docker / K8s Pods.
 
 ## Overview
 
